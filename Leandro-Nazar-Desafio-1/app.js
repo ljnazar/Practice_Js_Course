@@ -6,7 +6,7 @@ let conteoA = 0;
 let conteoB = 0;
 let conteoC = 0;
 
-let ingresoVoto = prompt("¿Desea ingresar un voto? (si/no)");
+let ingresoVoto = prompt("¿Desea ingresar un voto?(si/no)");
 
 while(ingresoVoto.toLowerCase() !== "no"){
     let nombre = prompt("Ingrese su nombre:");
