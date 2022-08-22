@@ -6,12 +6,15 @@ let conteoA = 0;
 let conteoB = 0;
 let conteoC = 0;
 
+let nombres = [];
+
 let ingresoVoto = prompt("¿Desea ingresar un voto? (si/no)");
 
 while(ingresoVoto.toLowerCase() !== "no"){
     let nombre = prompt("Ingrese su nombre:");
     if(nombre !== ""){
         alert(`Bienvenido ${nombre}`);
+        nombres.push(nombre);
         let voto = prompt(`Ingrese su voto:\nA - ${candidatoA}\nB - ${candidatoB}\nC - ${candidatoC}`);
         switch(voto.toUpperCase()){
             case "A":
@@ -37,4 +40,10 @@ while(ingresoVoto.toLowerCase() !== "no"){
     }
 }
 
-alert(`Resultados:\n${candidatoA}: ${conteoA} votos\n${candidatoB}: ${conteoB} votos\n${candidatoC}: ${conteoC} votos`)
+// Ejemplo de aplicación del for, tener en cuenta que sólo utilizando length ya tendría la cantidad de votantes
+let cantVotantes = "";
+for(i=1; i <= nombres.length; i++){
+    cantVotantes = i;
+}
+
+alert(`Resultados:\n\n${candidatoA}: ${conteoA} votos\n${candidatoB}: ${conteoB} votos\n${candidatoC}: ${conteoC} votos\n\nCantidad de votantes: ${cantVotantes}`)
