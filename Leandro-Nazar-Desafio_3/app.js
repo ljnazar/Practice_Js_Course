@@ -4,66 +4,89 @@ class Producto{
         this.precio = info.precio;
         this.stock = info.stock;
     }
-    vender(){
-        this.stock = this.stock -1;
+    mostrar(){
+        return `${this.nombre} - $${this.precio} - stock: ${this.stock}\n`
+    }
+    /*listarProductos(productos){
+        productos.forEach(element => {
+            console.log(element);
+        });
+    }
+    agregarProducto(){
+        
     }
     quitarProducto(){
 
     }
-    modificarPrecio(nuevoPrecio){
+    vender(){
+        this.stock = this.stock -1;
+    }
+    modificarProducto(nombre, precio, stock){
+
+    }
+    remarcarPrecio(){
         
     }
-    mostrarProducto(){
+    buscarProducto(){
 
-    }
+    }*/
 }
 
-/*const productos = [
-    {nombre: "Microondas", precio: 28000, stock: 4},
-    {nombre: "Heladera", precio: 73000, stock: 6},
-    {nombre: "Smart Tv", precio: 88000, stock: 3},
-    {nombre: "Escritorio", precio: 4700, stock: 7},
-];*/
+let productos = [];
 
-let producto = [];
+productos.push(new Producto({nombre: "Microondas", precio: 29000, stock: 3}));
+productos.push(new Producto({nombre: "Heladera", precio: 72000, stock: 4}));
+productos.push(new Producto({nombre: "Licuadora", precio: 8000, stock: 5}));
 
-producto[0] = new Producto({nombre: "Televisor", precio: 100000, stock: 5});
-producto[1] = new Producto({nombre: "Televisor", precio: 100000, stock: 4});
-producto1 = new Producto({nombre: "Televisor", precio: 100000, stock: 3});
+let opcion = "";
 
-producto[0].vender();
-
-console.log(producto[0]);
-console.log(producto[1]);
-console.log(producto1);
-
-//productos.push({nombre: "asdas", precio: 28000, stock: 3})
-
-
-//console.log(productos[0].vender());
-
-/*const producto1 = new Producto({
-    nombre: "Microondas", 
-    precio: 28900, 
-    stock: 5
-});
-console.log(producto1);*/
-
-/*document.addEventListener('keydown', (event) => {
-    if (event.key === "Escape") {
-        window.location.reload()
-        console.log("web recargada");
+while(opcion !== "6"){
+    opcion = prompt("Ingrese una opción:\n\n1- Listar Productos\n2- Ingresar producto\n3- Eliminar Producto\n4- Vender Producto\n5- Remarcar precios\n6- Salir");
+    if(opcion !== ""){
+        switch(opcion){
+            case "1":
+                let aux = "";
+                productos.forEach(producto => {
+                    aux += producto.mostrar();
+                });
+                alert(aux);
+                break;
+            case "2":
+                let nombreAdd = prompt("Ingrese producto");
+                let precioAdd = prompt("Ingrese precio");
+                let stockAdd = prompt("Ingrese cantidad");
+                productos.push(new Producto({nombre: `${nombreAdd}`, precio: `${precioAdd}`, stock: `${stockAdd}`}));
+                break;
+            case "3":
+                let nombreDel = prompt("Ingrese nombre del producto a eliminar");
+                let count = 0;
+                let index = "";
+                productos.forEach(element => {
+                    if(element.nombre === nombreDel){
+                        index = count;
+                    }
+                    count = count + 1;
+                });
+                if(index !== ""){
+                    productos = productos.filter((e) => e !== productos[index]);
+                    alert("Producto borrado con éxito");
+                }
+                else{
+                    alert("Producto no encontrado");
+                }
+                break;
+            case "4":
+                break;
+            case "5":
+                break;
+            case "6":
+                break;
+            default:
+                alert("Opción no válida");
+                break;
+        }
     }
-});*/
-
-//let ingresoProducto = prompt("¿Desea ingresar un producto? (si/no)");
-
-/*mostrar listado de productos
-seleccionar producto
-
-agregar producto
-editar producto
-eliminar producto
-vender producto
-remarcar precios
-buscar producto*/
+    else{
+        alert("Opción no ingresada")
+    }
+}
