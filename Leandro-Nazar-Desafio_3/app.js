@@ -4,32 +4,12 @@ class Producto{
         this.precio = info.precio;
         this.stock = info.stock;
     }
-    mostrar(){
+    listarProducto(){
         return `${this.nombre} - $${this.precio} - stock: ${this.stock}\n`
-    }
-    /*listarProductos(productos){
-        productos.forEach(element => {
-            console.log(element);
-        });
-    }
-    agregarProducto(){
-        
-    }
-    quitarProducto(){
-
     }
     vender(){
         this.stock = this.stock -1;
     }
-    modificarProducto(nombre, precio, stock){
-
-    }
-    remarcarPrecio(){
-        
-    }
-    buscarProducto(){
-
-    }*/
 }
 
 let productos = [];
@@ -38,16 +18,33 @@ productos.push(new Producto({nombre: "Microondas", precio: 29000, stock: 3}));
 productos.push(new Producto({nombre: "Heladera", precio: 72000, stock: 4}));
 productos.push(new Producto({nombre: "Licuadora", precio: 8000, stock: 5}));
 
+const buscarProducto = nombreBuscar => {
+    let found = false;
+    let count = 0;
+    let index = "";
+    let result = [];
+    productos.forEach(element => {
+        if(element.nombre === nombreBuscar){
+            index = count;
+            found = true;
+        }
+        count = count + 1;
+    });
+    result.push(found);
+    result.push(index);
+    return result;
+}
+
 let opcion = "";
 
 while(opcion !== "6"){
-    opcion = prompt("Ingrese una opción:\n\n1- Listar Productos\n2- Ingresar producto\n3- Eliminar Producto\n4- Vender Producto\n5- Remarcar precios\n6- Salir");
+    opcion = prompt("Ingrese una opción:\n\n1- Listar Productos\n2- Ingresar producto\n3- Eliminar Producto\n4- Buscar Producto\n5- Vender Producto\n6 - Salir\n");
     if(opcion !== ""){
         switch(opcion){
             case "1":
                 let aux = "";
                 productos.forEach(producto => {
-                    aux += producto.mostrar();
+                    aux += producto.listarProducto();
                 });
                 alert(aux);
                 break;
@@ -59,16 +56,11 @@ while(opcion !== "6"){
                 break;
             case "3":
                 let nombreDel = prompt("Ingrese nombre del producto a eliminar");
-                let count = 0;
-                let index = "";
-                productos.forEach(element => {
-                    if(element.nombre === nombreDel){
-                        index = count;
-                    }
-                    count = count + 1;
-                });
-                if(index !== ""){
-                    productos = productos.filter((e) => e !== productos[index]);
+                let resultCase3 = buscarProducto(nombreDel);
+                const foundCase3 = resultCase3[0];
+                const indexCase3 = resultCase3[1];
+                if(foundCase3){
+                    productos = productos.filter((e) => e !== productos[indexCase3]);
                     alert("Producto borrado con éxito");
                 }
                 else{
@@ -76,8 +68,23 @@ while(opcion !== "6"){
                 }
                 break;
             case "4":
+                let nombreBuscar = prompt("Ingrese nombre del producto a buscar");
+                let resultCase4 = buscarProducto(nombreBuscar);
+                const foundCase4 = resultCase4[0];
+                (foundCase4) ? alert("Producto encontrado") : alert("Producto no encontrado");
                 break;
             case "5":
+                let nombreVender = prompt("Ingrese nombre del producto a vender");
+                let resultCase5 = buscarProducto(nombreVender);
+                const foundCase5 = resultCase5[0];
+                const indexCase5 = resultCase5[1];
+                if(foundCase5){
+                    productos[indexCase5].vender();
+                    alert("Producto vendido con éxito");
+                }
+                else{
+                    alert("Producto no encontrado");
+                }
                 break;
             case "6":
                 break;
