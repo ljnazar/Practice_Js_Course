@@ -28,7 +28,7 @@ const buscarProducto = nombreBuscar => {
             index = count;
             found = true;
         }
-        count = count + 1;
+        count++;
     });
     result.push(found);
     result.push(index);
@@ -71,20 +71,25 @@ while(opcion !== "6"){
                 let nombreBuscar = prompt("Ingrese nombre del producto a buscar");
                 let resultCase4 = buscarProducto(nombreBuscar);
                 const foundCase4 = resultCase4[0];
-                (foundCase4) ? alert("Producto encontrado") : alert("Producto no encontrado");
+                foundCase4 ? alert("Producto encontrado") : alert("Producto no encontrado");
                 break;
             case "5":
                 let nombreVender = prompt("Ingrese nombre del producto a vender");
                 let resultCase5 = buscarProducto(nombreVender);
                 const foundCase5 = resultCase5[0];
                 const indexCase5 = resultCase5[1];
-                if(foundCase5){
+
+                foundCase5 && productos[indexCase5].vender();
+
+                foundCase5 ? alert("Producto vendido con éxito") : alert("Producto no encontrado")
+
+                /*if(foundCase5){
                     productos[indexCase5].vender();
                     alert("Producto vendido con éxito");
                 }
                 else{
                     alert("Producto no encontrado");
-                }
+                }*/
                 break;
             case "6":
                 break;
