@@ -46,7 +46,10 @@ while(opcion !== "6"){
                 productos.forEach(producto => {
                     aux += producto.listarProducto();
                 });
-                alert(aux);
+                Swal.fire(
+                    aux
+                )
+                //alert(aux);
                 break;
             case "2":
                 let nombreAdd = prompt("Ingrese producto");
@@ -78,18 +81,8 @@ while(opcion !== "6"){
                 let resultCase5 = buscarProducto(nombreVender);
                 const foundCase5 = resultCase5[0];
                 const indexCase5 = resultCase5[1];
-
                 foundCase5 && productos[indexCase5].vender();
-
                 foundCase5 ? alert("Producto vendido con éxito") : alert("Producto no encontrado")
-
-                /*if(foundCase5){
-                    productos[indexCase5].vender();
-                    alert("Producto vendido con éxito");
-                }
-                else{
-                    alert("Producto no encontrado");
-                }*/
                 break;
             case "6":
                 break;
