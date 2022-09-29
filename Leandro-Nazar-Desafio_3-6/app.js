@@ -46,10 +46,7 @@ while(opcion !== "6"){
                 productos.forEach(producto => {
                     aux += producto.listarProducto();
                 });
-                Swal.fire(
-                    aux
-                )
-                //alert(aux);
+                alert(aux);
                 break;
             case "2":
                 let nombreAdd = prompt("Ingrese producto");
